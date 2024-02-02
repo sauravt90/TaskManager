@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "3674c956-4079-4764-b30d-99f5a65536d0",
+		"name": "TaskManager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18734040"
+	},
+	"item": [
+		{
+			"name": "RegisterUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\":\"Sauravt\",\r\n    \"password\": \"saurav\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8085/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LoginUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8085/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateTask",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoiU2F1cmF2dCIsImlhdCI6MTcwMjcyNjA3Mywicm9sZXMiOiJVU0VSIn0.MzCuX0n7PoO47IZM-Wh3OSKnXmDIsGqS8UKiM-pttiA4zFB2sLKYkcWTdy2QVL1lWI90xTSsJed8ix-inqYV3AcF_YeWgp2CJ6VJe01XimNgg-5Qw4YsUx2bezBHF16YmVkcE4UbMqwFufy131tTSF4BmR2dstVbSqoXenptwyTp5Z_wWOzeh9FVH4PRLu4TSMRANmDS76IG3tW-YmJ9cd5jOafXDjgvQBt5ugwpAHlG3ipJpO1sP2NHQwuqHYuf3A1jVQFj0adOHjUZOed2txe3qT1GvtaFbzJZjzOsAKhkGF6-VuPBFOwIMzBKRWa3A6_LVeLCsIyFoQeH5zEOpg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"taskName\":\"test1\",\r\n    \"taskDescription\":\"34jgrg wrigiwjrg negwg\",\r\n    \"taskDate\":\"2023-12-02\",\r\n    \"taskEndDate\":\"2023-12-02\",\r\n    \"taskStatus\": \"pending\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8085/task/createTask",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"task",
+						"createTask"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateTask",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoiU2F1cmF2dCIsImlhdCI6MTcwMjcyNjA3Mywicm9sZXMiOiJVU0VSIn0.MzCuX0n7PoO47IZM-Wh3OSKnXmDIsGqS8UKiM-pttiA4zFB2sLKYkcWTdy2QVL1lWI90xTSsJed8ix-inqYV3AcF_YeWgp2CJ6VJe01XimNgg-5Qw4YsUx2bezBHF16YmVkcE4UbMqwFufy131tTSF4BmR2dstVbSqoXenptwyTp5Z_wWOzeh9FVH4PRLu4TSMRANmDS76IG3tW-YmJ9cd5jOafXDjgvQBt5ugwpAHlG3ipJpO1sP2NHQwuqHYuf3A1jVQFj0adOHjUZOed2txe3qT1GvtaFbzJZjzOsAKhkGF6-VuPBFOwIMzBKRWa3A6_LVeLCsIyFoQeH5zEOpg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"taskName\":\"test1\",\r\n    \"taskDescription\":\"34jgrg wrigiwjrg negwg\",\r\n    \"taskDate\":\"2023-12-02\",\r\n    \"taskEndDate\":\"2023-12-02\",\r\n    \"taskStatus\": \"pending\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8085/task/createTask",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"task",
+						"createTask"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllTasks",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "deleteTask",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

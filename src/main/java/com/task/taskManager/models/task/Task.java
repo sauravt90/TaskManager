@@ -1,6 +1,9 @@
 package com.task.taskManager.models.task;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.task.taskManager.models.user.ApplicationUser;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Fetch;
 
 import java.time.LocalDate;
 
@@ -16,6 +19,18 @@ public class Task {
     private LocalDate taskEndDate;
     private String taskStatus;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_name")
+    @JsonIgnore
+    private ApplicationUser user;
+
+    public ApplicationUser getUser() {
+        return user;
+    }
+
+    public void setUser(ApplicationUser user) {
+        this.user = user;
+    }
 
     public Task() {
     }
@@ -49,7 +64,7 @@ public class Task {
         return taskEndDate;
     }
 
-    public String isTaskStatus() {
+    public String getTaskStatus() {
         return taskStatus;
     }
 

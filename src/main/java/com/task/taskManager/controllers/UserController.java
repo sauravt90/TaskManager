@@ -24,7 +24,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ApplicationUser registerUser(@RequestBody RegistrationDTO registrationDTO ){
+    public RegistrationDTO registerUser(@RequestBody RegistrationDTO registrationDTO ){
         return authenticationService.registerUser(registrationDTO.getUserName(),registrationDTO.getPassword());
     }
 

@@ -1,7 +1,10 @@
 package com.task.taskManager.models.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class LoginResponseDTO {
 
+    @JsonIgnore
     private ApplicationUser applicationUser;
     private String jwt;
 

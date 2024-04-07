@@ -1,7 +1,9 @@
 package com.task.taskManager.service;
 
+import com.mysql.cj.jdbc.exceptions.SQLError;
 import com.task.taskManager.models.user.ApplicationUser;
 import com.task.taskManager.models.user.LoginResponseDTO;
+import com.task.taskManager.models.user.RegistrationDTO;
 import com.task.taskManager.models.user.Role;
 import com.task.taskManager.repository.RoleRepository;
 import com.task.taskManager.repository.UserRepository;
@@ -13,6 +15,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,7 +35,9 @@ public class AuthenticationService {
     public final TokenService tokenService;
 
 
-    public AuthenticationService(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager, TokenService tokenService) {
+    public AuthenticationService(UserRepository userRepository, RoleRepository roleRepository,
+                                 PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager,
+                                 TokenService tokenService) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
@@ -40,18 +45,21 @@ public class AuthenticationService {
         this.tokenService = tokenService;
     }
 
-    public ApplicationUser registerUser(String userName,String password){
+    public RegistrationDTO registerUser(String userName,String password){
         String encodedPassword = passwordEncoder.encode(password);
         Role userRole = roleRepository.findByAuthority("USER").get();
         Set<Role> authorities = new HashSet<>();
         authorities.add(userRole);
-
-        return userRepository.save(new ApplicationUser(0,userName,encodedPassword ,authorities));
+        try {
+            userRepository.save(new ApplicationUser(0, userName, encodedPassword, authorities));
+        }catch (Throwable e){
+            System.out.println("exception : "+e.getMessage());
+        }
+        return new RegistrationDTO(userName,"");
     }
 
     public LoginResponseDTO loginUser(String userName,
                                       String password){
-
 
         try{
 
@@ -62,7 +70,7 @@ public class AuthenticationService {
 
             String token = tokenService.generateJWT(auth);
 
-            return new LoginResponseDTO(userRepository.findByUserName(userName).get(),token);
+            return new LoginResponseDTO(null,token);
 
 
         }catch (AuthenticationException e){
@@ -70,14 +78,5 @@ public class AuthenticationService {
         }
 
     }
-
-
-
-
-
-
-
-
-
 
 }

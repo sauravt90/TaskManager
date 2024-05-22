@@ -59,25 +59,24 @@ public class AuthenticationService {
     }
 
     public LoginResponseDTO loginUser(String userName,
-                                      String password){
+                                      String password) {
 
-        try{
+        try {
 
             Authentication auth = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(userName,password)
+                    new UsernamePasswordAuthenticationToken(userName, password)
             );
 
 
             String token = tokenService.generateJWT(auth);
 
-            return new LoginResponseDTO(null,token);
+            return new LoginResponseDTO(null, token);
 
 
-        }catch (AuthenticationException e){
-            return new LoginResponseDTO(null,"");
+        } catch (AuthenticationException e) {
+            return new LoginResponseDTO(null, "");
         }
 
     }
-    //test comment
 
 }
